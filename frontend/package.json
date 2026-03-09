@@ -1,0 +1,12 @@
+{
+  "name": "lshop-frontend",
+  "version": "1.0.0",
+  "description": "SPA интернет-магазина (главная + корзина)",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.2"
+  }
+} 
