@@ -4,6 +4,7 @@ interface AppState {
     isAuthenticated: boolean;
     userId: string | null;
     cart: Cart | null;
+    user?: any; // <-- добавить эту строку
 }
 
 let state: AppState = {

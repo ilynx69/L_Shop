@@ -4,7 +4,7 @@ const API_BASE = 'http://localhost:3002/api';
 const AUTH_API = 'http://localhost:3001/api/auth';
 const DELIVERY_API = 'http://localhost:3001/api/delivery';
 
-// ========== ТВОИ ФУНКЦИИ (товары + корзина) ==========
+// ========== Товары ==========
 export const productsApi = {
     async getProducts(params: ProductQueryParams = {}): Promise<Product[]> {
         const url = new URL(`${API_BASE}/products`);
@@ -24,6 +24,7 @@ export const productsApi = {
     }
 };
 
+// ========== Корзина ==========
 export const cartApi = {
     async getCart(): Promise<Cart> {
         const res = await fetch(`${API_BASE}/cart`, { credentials: 'include' });
@@ -57,10 +58,18 @@ export const cartApi = {
             credentials: 'include'
         });
         if (!res.ok) throw new Error('Ошибка удаления товара');
+    },
+
+    async clearCart(): Promise<void> {
+        const res = await fetch(`${API_BASE}/cart`, {
+            method: 'DELETE',
+            credentials: 'include'
+        });
+        if (!res.ok) throw new Error('Ошибка очистки корзины');
     }
 };
 
-// ========== ЕГО ФУНКЦИИ (авторизация + доставка) ==========
+// ========== Авторизация ==========
 export const authApi = {
     async register(userData: { name: string; email: string; login: string; phone: string; password: string }): Promise<{ user: any }> {
         const res = await fetch(`${AUTH_API}/register`, {
@@ -101,6 +110,7 @@ export const authApi = {
     }
 };
 
+// ========== Доставка ==========
 export const deliveryApi = {
     async create(data: { address: string; phone: string; email: string; paymentMethod: string }): Promise<{ delivery: any }> {
         const res = await fetch(`${DELIVERY_API}`, {
