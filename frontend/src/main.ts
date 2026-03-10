@@ -2,6 +2,7 @@ import { initRouter } from './router.js';
 import { setState } from './services/state.js';
 import HomePage from './pages/HomePage.js';
 import CartPage from './pages/CartPage.js';
+import AuthPage from './pages/AuthPage.js';
 
 const app = document.getElementById('app');
 if (!app) throw new Error('#app not found');
@@ -13,6 +14,7 @@ const nav = document.createElement('nav');
 nav.innerHTML = `
     <a href="/" data-link>Главная</a>
     <a href="/cart" data-link>Корзина</a>
+    <a href="/auth" data-link>Вход / Регистрация</a>
 `;
 document.body.insertBefore(nav, app);
 
@@ -29,7 +31,7 @@ document.body.addEventListener('click', (e) => {
 // Для теста делаем пользователя авторизованным (позже фронт2 будет управлять)
 setState({ isAuthenticated: true, userId: 'test-user' });
 
-let currentPage: HomePage | CartPage | null = null;
+let currentPage: HomePage | CartPage | AuthPage | null = null;
 
 router.addRoute('/', () => {
     if (currentPage) currentPage.destroy?.();
@@ -40,6 +42,12 @@ router.addRoute('/', () => {
 router.addRoute('/cart', () => {
     if (currentPage) currentPage.destroy?.();
     currentPage = new CartPage(app);
+    currentPage.render();
+});
+
+router.addRoute('/auth', () => {
+    if (currentPage) currentPage.destroy?.();
+    currentPage = new AuthPage(app);
     currentPage.render();
 });
 
