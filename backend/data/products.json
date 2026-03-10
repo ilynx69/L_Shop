@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "iPhone 15",
+    "description": "Смартфон Apple",
+    "price": 999,
+    "category": "Смартфоны",
+    "available": true,
+    "image": ""
+  },
+  {
+    "id": "2",
+    "name": "Samsung Galaxy S24",
+    "description": "Смартфон Samsung",
+    "price": 899,
+    "category": "Смартфоны",
+    "available": true,
+    "image": ""
+  },
+  {
+    "id": "3",
+    "name": "MacBook Pro",
+    "description": "Ноутбук Apple",
+    "price": 1999,
+    "category": "Ноутбуки",
+    "available": false,
+    "image": ""
+  },
+  {
+    "id": "4",
+    "name": "Наушники Sony",
+    "description": "Беспроводные наушники",
+    "price": 399,
+    "category": "Аксессуары",
+    "available": true,
+    "image": ""
+  }
+]
