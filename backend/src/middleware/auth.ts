@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+<<<<<<< HEAD
 import jwt from 'jsonwebtoken';
 
 declare global {
@@ -22,4 +23,23 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
     } catch (err) {
         return res.status(401).json({ message: 'Неверный токен' });
     }
+=======
+
+// Временная заглушка — пока нет настоящей авторизации
+// Позже заменишь на реальную проверку куки / JWT
+export const authMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  // Для тестов/разработки пропускаем всех
+  // req.user = { id: 'test-user-123' }; // ← можно раскомментировать для симуляции
+
+  // Реальная версия (когда будет куки):
+  // const userId = req.cookies?.userId || req.signedCookies?.userId;
+  // if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+  // req.user = { id: userId };
+
+  next();
+>>>>>>> 775bc22 (feat: товары и корзина)
 };
