@@ -82,4 +82,4 @@ export default class AuthPage {
             this.container.appendChild(form);
         }
     }
-}
+}	
