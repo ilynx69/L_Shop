@@ -1,20 +1,25 @@
-import fs from 'fs/promises';
-import path from 'path';
+import { readFile, writeFile, mkdir } from 'fs/promises';
+import { join, dirname } from 'path';
 
-const DATA_DIR = path.join(__dirname, '../../data');
+const DATA_DIR = join(__dirname, '../../data');
 
-export async function readJSON<T>(filename: string): Promise<T[]> {
-    try {
-        const filePath = path.join(DATA_DIR, filename);
-        const data = await fs.readFile(filePath, 'utf-8');
-        return JSON.parse(data);
-    } catch (error) {
-        return [];
+export async function readJson<T>(filename: string): Promise<T> {
+  const filePath = join(DATA_DIR, filename);
+
+  try {
+    const data = await readFile(filePath, 'utf-8');
+    return JSON.parse(data) as T;
+  } catch (err: any) {
+    if (err?.code === 'ENOENT') {
+      return [] as T; // или {} as T — в зависимости от файла
     }
+    throw err;
+  }
 }
 
-export async function writeJSON<T>(filename: string, data: T[]): Promise<void> {
-    const filePath = path.join(DATA_DIR, filename);
-    await fs.mkdir(DATA_DIR, { recursive: true });
-    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+export async function writeJson<T>(filename: string, data: T): Promise<void> {
+  const filePath = join(DATA_DIR, filename);
+
+  await mkdir(dirname(filePath), { recursive: true });
+  await writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }

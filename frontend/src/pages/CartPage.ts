@@ -68,8 +68,6 @@ export default class CartPage {
         if (!state.isAuthenticated) {
             const msg = document.createElement('p');
             msg.innerHTML = 'Пожалуйста, <a href="/auth">войдите</a> для просмотра корзины.';
-            msg.style.textAlign = 'center';
-            msg.style.padding = '50px';
             this.container.appendChild(msg);
             return;
         }
@@ -77,8 +75,6 @@ export default class CartPage {
         if (!this.cart || this.cart.items.length === 0) {
             const empty = document.createElement('p');
             empty.textContent = 'Корзина пуста';
-            empty.style.textAlign = 'center';
-            empty.style.padding = '50px';
             this.container.appendChild(empty);
             return;
         }
@@ -107,21 +103,6 @@ export default class CartPage {
         totalEl.style.fontSize = '1.2em';
         totalEl.innerHTML = `<strong>Итого: ${total} ₽</strong>`;
         this.container.appendChild(totalEl);
-
-        // Кнопка оформления заказа
-        const checkoutButton = document.createElement('button');
-        checkoutButton.textContent = 'Оформить заказ';
-        checkoutButton.style.marginTop = '20px';
-        checkoutButton.style.padding = '12px 30px';
-        checkoutButton.style.background = 'linear-gradient(135deg, #2a5a45, #1a3b2e)';
-        checkoutButton.style.color = 'white';
-        checkoutButton.style.border = 'none';
-        checkoutButton.style.borderRadius = '30px';
-        checkoutButton.style.fontSize = '16px';
-        checkoutButton.style.fontWeight = '600';
-        checkoutButton.style.cursor = 'pointer';
-        checkoutButton.onclick = () => router.navigateTo('/delivery');
-        this.container.appendChild(checkoutButton);
     }
 
     destroy() {

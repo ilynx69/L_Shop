@@ -24,22 +24,3 @@ export interface ProductQueryParams {
     category?: string;
     available?: boolean;
 }
-
-export interface User {
-    id: string;
-    name: string;
-    email: string;
-    login: string;
-    phone: string;
-    createdAt?: string;
-}
-
-export interface Delivery {
-    id: string;
-    userId: string;
-    address: string;
-    phone: string;
-    email: string;
-    paymentMethod: 'card' | 'cash';
-    createdAt: string;
-}
