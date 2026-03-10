@@ -1,4 +1,3 @@
-// ========== ТВОИ ТИПЫ ==========
 export interface Product {
     id: string;
     name: string;
@@ -26,7 +25,6 @@ export interface ProductQueryParams {
     available?: boolean;
 }
 
-// ========== ЕГО ТИПЫ ==========
 export interface User {
     id: string;
     name: string;

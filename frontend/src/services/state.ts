@@ -1,16 +1,17 @@
-import { Cart } from '../types/index.js';
+import { Cart, User } from '../types/index.js';
 
 interface AppState {
     isAuthenticated: boolean;
     userId: string | null;
     cart: Cart | null;
-    user?: any; // <-- добавить эту строку
+    user: User | null;
 }
 
 let state: AppState = {
     isAuthenticated: false,
     userId: null,
-    cart: null
+    cart: null,
+    user: null
 };
 
 const listeners: Array<(state: AppState) => void> = [];

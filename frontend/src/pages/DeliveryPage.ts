@@ -21,14 +21,12 @@ export default class DeliveryPage {
         };
 
         try {
-            // 1. Отправляем данные доставки
             await deliveryApi.create(deliveryData);
-            // 2. Если успешно, очищаем корзину
             await cartApi.clearCart();
-            alert('Доставка оформлена, корзина очищена');
+            (window as any).showNotification('Доставка оформлена, корзина очищена', 'success');
             router.navigateTo('/');
         } catch (error) {
-            alert('Ошибка оформления доставки. Попробуйте снова.');
+            (window as any).showNotification('Ошибка оформления доставки', 'error');
             console.error(error);
         }
     };
@@ -60,7 +58,6 @@ export default class DeliveryPage {
         wrapper.style.position = 'relative';
         wrapper.style.overflow = 'hidden';
 
-        // Зеленая полоска сверху
         const topBar = document.createElement('div');
         topBar.style.position = 'absolute';
         topBar.style.top = '0';

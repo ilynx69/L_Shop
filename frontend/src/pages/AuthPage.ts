@@ -24,9 +24,10 @@ export default class AuthPage {
         try {
             const result = await authApi.register(userData);
             setState({ isAuthenticated: true, user: result.user });
+            (window as any).showNotification('Регистрация успешна', 'success');
             router.navigateTo('/');
         } catch (error) {
-            alert('Ошибка регистрации');
+            (window as any).showNotification('Ошибка регистрации', 'error');
         }
     };
 
@@ -39,9 +40,10 @@ export default class AuthPage {
         try {
             const result = await authApi.login(login, password);
             setState({ isAuthenticated: true, user: result.user });
+            (window as any).showNotification('Вход выполнен', 'success');
             router.navigateTo('/');
         } catch (error) {
-            alert('Ошибка входа');
+            (window as any).showNotification('Ошибка входа', 'error');
         }
     };
 
@@ -58,7 +60,6 @@ export default class AuthPage {
         wrapper.style.position = 'relative';
         wrapper.style.overflow = 'hidden';
 
-        // Зеленая полоска сверху
         const topBar = document.createElement('div');
         topBar.style.position = 'absolute';
         topBar.style.top = '0';
